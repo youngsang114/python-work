@@ -1,0 +1,1 @@
+python C:\Users\dgh06\OneDrive\문서\GitHub\python-work\230411\crawlling.py
