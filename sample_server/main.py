@@ -3,7 +3,7 @@ from flask import Flask, render_template    #html 보여주는것
 import pandas as pd
 
 ## Class 생성
-app = Flask(__name__)
+app = Flask(__name__)  
 
 ## localhost:3000/ 요청시 index.html 리턴 api 생성
 @app.route("/")
@@ -30,7 +30,7 @@ def index():
     data = df_2.to_dict()
     cnt = len(df_2)         # 전체 데이터 길이 
     columns = df_2.columns  # 데이터형 list
-    c_cnt = len(columns)    # 컬럼의 길이
+    
     # print(data)
     # _x = [1,2,3,4,5]
     # _y = [40, 20, 10, 40, 100]
@@ -61,6 +61,7 @@ def index2():
     # print(data)
     # _x = [1,2,3,4,5]
     # _y = [40, 20, 10, 40, 100]
+    
     return render_template("index2.html", 
                             x_pos=_x, 
                             y_pos=_y, 

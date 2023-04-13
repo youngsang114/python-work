@@ -15,6 +15,7 @@ def BnH(df,col,start,end):
     
     df["daily_rtn"]=df[col].pct_change()
     df['st_rtn']=(1+df['daily_rtn']).cumprod()
+    #df.index= df.index.astype('str')
 
     return df
     
