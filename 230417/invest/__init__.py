@@ -1,6 +1,6 @@
 import pandas as pd
 import momentum as mm
-import buyandhold as bnh
+from invest import buyandhold as bnh
 
 
 class Invest:
@@ -19,5 +19,5 @@ class Invest:
         return self.result
     
     def buyandhold(self):
-        self.result=bnh.BnH(self.df,self.col,self.start,self.end)
+        self.result=bnh.bnh(self.df,self.col,self.start,self.end)
         return self.result

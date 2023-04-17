@@ -2,7 +2,7 @@ import numpy as np
 from datetime import datetime
 import pandas as pd
 
-def BnH(df,col,start,end):
+def bnh(df,col,start,end):
     # 인덱스 시계열로 변경
     df.index=pd.to_datetime(df.index)
     start=datetime.strptime(start,'%Y%m%d').isoformat()
