@@ -3,6 +3,10 @@ from datetime import datetime
 import pandas as pd
 
 def bnh(df,col,start,end):
+
+    if 'Date' in df.columns:
+        df=df.set_index("Date")
+        
     # 인덱스 시계열로 변경
     df.index=pd.to_datetime(df.index)
     start=datetime.strptime(start,'%Y%m%d').isoformat()

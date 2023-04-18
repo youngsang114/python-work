@@ -1,6 +1,7 @@
 import pandas as pd
-import momentum as mm
+from invest import momentum as mm
 from invest import buyandhold as bnh
+from invest import bollinger as boll
 
 
 class Invest:
@@ -20,4 +21,10 @@ class Invest:
     
     def buyandhold(self):
         self.result=bnh.bnh(self.df,self.col,self.start,self.end)
+        return self.result
+    
+    def bollinger(self):
+        self.result = boll.create_band(self.df, self.col, self.start, self.end)
+        self.result = boll.add_trade(self.result)
+        self.result = boll.add_rtn(self.result)
         return self.result
