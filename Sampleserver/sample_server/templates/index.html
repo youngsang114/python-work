@@ -14,6 +14,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="{{url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
+
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -35,19 +36,7 @@
     <link href="{{url_for('static', filename='css/dashboard.css')}}" rel="stylesheet">
   </head>
   <body>
-    
-<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Ubion</a>
-  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
-  <div class="navbar-nav">
-    <div class="nav-item text-nowrap">
-      <a class="nav-link px-3" href="#">Sign out</a>
-    </div>
-  </div>
-</header>
+    {% include 'header.html'%}
 
 <div class="container-fluid">
   <div class="row">
@@ -74,10 +63,8 @@
               -->
             <tr>
               {%for col in columns%}
-              <!-- 행동을 할때,코드 실행할때 {percant 할 내용 percant} -->
               <th>{{col}}</th>
               {%endfor%}
-              <!-- for 문이 끝날때 선언해주기 -->
             </tr>
           </thead>
           <tbody>
@@ -90,16 +77,11 @@
               data["인덱스"] -> [0, 1, 2, 3, 4, 5]
               data["인덱스"][0] = 0
              -->
-             <!--{percent   python code   percnet} 파이썬 코드를 쓰겠다,{percent end for,if  percnet} end써야 끝남 -->
-            {%for i in range(0, cnt, 1)%}
-             <!--tr은 테이블에 행을 추가  -->
+            {%for i in range(0, cnt, 1)%} 
+              <!-- tr은 테이블에 행을 추가 -->
               <tr>
                 {%for col in columns%}
-                  {%if col == "인덱스"%}
-                    <td>{{data[col][i]+1}}</td>
-                  {%else%}
-                    <td>{{data[col][i]}}</td>
-                  {%endif%}
+                    <td>{{data[i][col]}}</td>
                 {%endfor%}
               </tr>
             {%endfor%}
@@ -116,18 +98,17 @@
       <!-- <script src="{{url_for('static', filename='js/dashboard.js')}}"></script> -->
       <script>
         //그래프에 들어갈 값들을 변수에 담아두는 과정
-        // labels : x축의 이름
         const labels = {{x_pos | tojson}};
       
         const data = {
           // x축 데이터(리스트)
           labels: labels,
           datasets: [{
-            // label : 그래프의 범례
-            label: '일일확진자',
+            // 그래프의 범례
+            label: '{{name}}',
             backgroundColor: 'rgb(255, 99, 132)',
             borderColor: 'rgb(255, 99, 132)',
-            // y축의 데이터(리스트)
+            // y축의 데이터 (리스트)
             data: {{y_pos | tojson}},
           }]
         };
